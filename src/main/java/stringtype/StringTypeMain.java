@@ -12,8 +12,8 @@ public class StringTypeMain {
         message += 444;
         System.out.println(message);
 
-        Boolean b = message.equals("Hello John Doe");
-        Boolean c = message.equals("Hello John Doe444");
+        Boolean b = "Hello John Doe".equals(message);
+        Boolean c = "Hello John Doe444".equals(message);
 
         System.out.println(b);
         System.out.println(c);
