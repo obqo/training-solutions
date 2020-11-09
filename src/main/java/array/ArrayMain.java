@@ -12,12 +12,16 @@ public class ArrayMain {
             power[i] = (int) Math.pow(2, i);
         }
         for (int elem : power) {
-            System.out.println(elem);
+            System.out.print(elem + " ");
         }
+        System.out.println();
 
-        Boolean[] array = {false, true, false, true, false, true};
-        for (Boolean elem : array) {
-            System.out.println(elem);
+        boolean[] array = new boolean[6];
+        for (int i = 1; i < array.length; i++) {
+            array[i] = array[i - 1];
+        }
+        for (boolean elem : array) {
+            System.out.print(elem + " ");
         }
     }
 }
