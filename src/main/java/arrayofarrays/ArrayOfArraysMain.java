@@ -49,7 +49,8 @@ public class ArrayOfArraysMain {
 
         for (int[] i : a) {
             for (int j : i) {
-                System.out.print(" ".repeat(3 - String.valueOf(j).length()) + j + " ");
+                //System.out.print(" ".repeat(3 - String.valueOf(j).length()) + j + " ");
+                System.out.print(" ".repeat(3 - (j + "").length()) + j + " ");
             }
             System.out.println();
         }
