@@ -9,9 +9,10 @@ public class NumberGuesser {
 
         int rnd = new Random().nextInt(100) + 1;
         Scanner scanner = new Scanner(System.in);
+        int count = 1;
         System.out.println("Tipped:");
         int tipp = scanner.nextInt();
-        while (tipp != rnd) {
+        while (tipp != rnd && count <= 6)  {
             if (tipp > rnd) {
                 System.out.println("Kisebbet kérek!");
             }
@@ -20,8 +21,14 @@ public class NumberGuesser {
             }
             System.out.println("Tipped:");
             tipp = scanner.nextInt();
+            count++;
         }
-        System.out.println("Talált!");
+        if (count <=6) {
+            System.out.println("Talált! Nyertél");
+        }
+        else {
+            System.out.println("Vesztettél! nem találtál 6 tippből");
+        }
 
 
     }
