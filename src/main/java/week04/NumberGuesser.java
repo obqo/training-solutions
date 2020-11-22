@@ -29,8 +29,6 @@ public class NumberGuesser {
         else {
             System.out.println("Vesztettél! nem találtál 6 tippből");
         }
-
-
     }
 
 }
