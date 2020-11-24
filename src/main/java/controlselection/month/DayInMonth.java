@@ -2,7 +2,7 @@ package controlselection.month;
 
 public class DayInMonth {
 
-    public int monthsDay(int year, String month) {
+    public int numberOfDays(int year, String month) {
         switch (month.toUpperCase()) {
             case "JANUÁR":
             case "MÁRCIUS":
@@ -27,15 +27,5 @@ public class DayInMonth {
             default:
                 throw new IllegalArgumentException("Invalid month: " + month);
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new DayInMonth().monthsDay(2020, "február"));
-        System.out.println(new DayInMonth().monthsDay(2020, "március"));
-        System.out.println(new DayInMonth().monthsDay(2020, "november"));
-        System.out.println(new DayInMonth().monthsDay(2000, "február"));
-        System.out.println(new DayInMonth().monthsDay(2100, "február"));
-        System.out.println(new DayInMonth().monthsDay(2021, "február"));
-        System.out.println(new DayInMonth().monthsDay(2021, "febr"));
     }
 }

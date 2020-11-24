@@ -2,7 +2,7 @@ package controlselection.consonant;
 
 public class ToConsonant {
 
-    public char nextChar(char ch) {
+    public char convertToConsonant(char ch) {
         switch (ch) {
             case 'a':
             case 'e':
@@ -13,15 +13,5 @@ public class ToConsonant {
             default:
                 return ch;
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new ToConsonant().nextChar('a'));
-        System.out.println(new ToConsonant().nextChar('e'));
-        System.out.println(new ToConsonant().nextChar('i'));
-        System.out.println(new ToConsonant().nextChar('o'));
-        System.out.println(new ToConsonant().nextChar('u'));
-        System.out.println(new ToConsonant().nextChar('b'));
-        System.out.println(new ToConsonant().nextChar('z'));
     }
 }
