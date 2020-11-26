@@ -31,6 +31,12 @@ public class Store {
     }
 
     public boolean isValid(Product product) {
-        return (!productList.contains(product) && product.getExpire().isAfter(LocalDate.now()));
+        boolean validName = true;
+        for (Product product1 : productList) {
+            if (product1.getName().equals(product.getName())) {
+                validName = false;
+            }
+        }
+        return (validName && product.getExpire().isAfter(LocalDate.now()));
     }
 }
