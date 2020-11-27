@@ -4,7 +4,7 @@ public class Patient {
 
     private String name;
     private String socialSecurityNumber;
-    int yearOfBirth;
+    private int yearOfBirth;
 
     public Patient(String name, String socialSecurityNumber, int yearOfBirth) {
         if (name == null || name.isEmpty()) {

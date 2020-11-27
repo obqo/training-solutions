@@ -15,7 +15,7 @@ public class SsnValidatorTest {
 
     @Test
     public void testSsnLetters() {
-        assertFalse(new SsnValidator().isValidSsn("abc"));
+        assertFalse(new SsnValidator().isValidSsn("123456abc"));
     }
 
     @Test
