@@ -34,6 +34,7 @@ public class UserTest {
         assertThrows(IllegalArgumentException.class, () -> new User("Kiss", "Csaba", "a@.acom"));
         assertThrows(IllegalArgumentException.class, () -> new User("Kiss", "Csaba", "@a.com"));
         assertThrows(IllegalArgumentException.class, () -> new User("Kiss", "Csaba", "a@acom."));
-        assertThrows(IllegalArgumentException.class, () -> new User("Kiss", "Csaba", "a.b@a.com"));
+        User user = new User("Kiss", "Csaba", "a.b@a.com");
+        assertEquals("Kiss Csaba", user.getFullName());
     }
 }

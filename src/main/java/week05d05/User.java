@@ -34,6 +34,6 @@ public class User {
     }
 
     public boolean isValidEmail(String email){
-        return email.indexOf(".") < email.length() - 1 && email.indexOf("@") < (email.indexOf(".", email.indexOf("@") + 1) - 1);
+        return email.indexOf("@") > 0 && email.indexOf(".") < (email.length() - 1) && email.indexOf("@") < (email.indexOf(".", email.indexOf("@") + 1) - 1);
     }
 }
