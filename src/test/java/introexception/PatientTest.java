@@ -1,4 +1,4 @@
-package introexception.patient;
+package introexception;
 
 import org.junit.jupiter.api.Test;
 

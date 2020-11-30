@@ -1,3 +1,5 @@
+//A week05d02.ChangeLetter osztályban írj meg egy String changeVowels(String) metódust, mely kicseréli a paraméterként átadott szövegben
+// az angol magánhangzókat csillag karakterre. Írj hozzá teszteseteket is!
 package week05d02;
 
 public class ChangeLetter {
