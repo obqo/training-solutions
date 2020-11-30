@@ -17,10 +17,8 @@ public class ListSelector {
             throw new IllegalArgumentException("Empty list!");
         }
         List<String> newStrings = new ArrayList<>();
-        for (int i = 0; i < strings.size(); i++) {
-            if (i % 2 == 0) {
-                newStrings.add(strings.get(i));
-            }
+        for (int i = 0; i < strings.size(); i+=2) {
+            newStrings.add(strings.get(i));
         }
         if (newStrings.toString() == "[]") {
             return "";
