@@ -2,6 +2,7 @@ package week06d01;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,17 +12,17 @@ public class ListSelectorTest {
 
     @Test
     void testListSelectorBonusGood() {
-        assertEquals("[1,3,5]", new ListSelector().selectorBonus(Arrays.asList("1", "2", "3", "4", "5")));
+        assertEquals("[1,3,5]", new ListSelector().selectorBonus(new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5"))));
     }
 
     @Test
     void testListSelectorGood() {
-        assertEquals("[135]", new ListSelector().selector(Arrays.asList("1", "2", "3", "4", "5")));
+        assertEquals("[135]", new ListSelector().selector(new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5"))));
     }
 
     @Test
     void testListSelectorEmpty() {
-        assertEquals("", new ListSelector().selector(Arrays.asList()));
+        assertEquals("", new ListSelector().selector(new ArrayList<>()));
     }
 
     @Test
