@@ -5,6 +5,9 @@ A metódus térjen vissza a törölni kívánt szavak nélküli Stringgel. (Mell
  */
 package week06d03;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WordEraser {
 
     public String eraseWordChar(String words, String word) {
@@ -64,6 +67,20 @@ public class WordEraser {
             }
         }
         return sb.toString().trim();
+    }
+
+    public String eraseWordSplitList(String words, String word) {
+        if (isEmpty(words) || isEmpty(word)) {
+            throw new IllegalArgumentException("String is null!");
+        }
+        String[] wordArray = words.split(" ");
+        List<String> list = new ArrayList<>();
+        for (String wA : wordArray) {
+            if (!wA.equals(word)) {
+                list.add(wA);
+            }
+        }
+        return String.join(" ", list);
     }
 
     public boolean isEmpty(String string) {

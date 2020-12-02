@@ -31,6 +31,13 @@ public class WordEraserTest {
         assertEquals("körte", new WordEraser().eraseWordSplit("körte", "alma"));
         assertEquals("", new WordEraser().eraseWordSplit("", "alma"));
         assertEquals("alma körte dió alma szilva", new WordEraser().eraseWordSplit("alma körte dió alma szilva", ""));
+        //eraseWordSplitList
+        assertEquals("körte dió szilva", new WordEraser().eraseWordSplitList("alma körte dió alma szilva", "alma"));
+        assertEquals("", new WordEraser().eraseWordSplitList("alma", "alma"));
+        assertEquals("körte dió", new WordEraser().eraseWordSplitList("körte dió alma", "alma"));
+        assertEquals("körte", new WordEraser().eraseWordSplitList("körte", "alma"));
+        assertEquals("", new WordEraser().eraseWordSplitList("", "alma"));
+        assertEquals("alma körte dió alma szilva", new WordEraser().eraseWordSplitList("alma körte dió alma szilva", ""));
     }
 
     @Test
@@ -44,5 +51,8 @@ public class WordEraserTest {
         //eraseWordSplit
         assertThrows(IllegalArgumentException.class, () -> new WordEraser().eraseWordSplit("alma körte dió alma szilva", null));
         assertThrows(IllegalArgumentException.class, () -> new WordEraser().eraseWordSplit(null, "alma"));
+        //eraseWordSplitList
+        assertThrows(IllegalArgumentException.class, () -> new WordEraser().eraseWordSplitList("alma körte dió alma szilva", null));
+        assertThrows(IllegalArgumentException.class, () -> new WordEraser().eraseWordSplitList(null, "alma"));
     }
 }
