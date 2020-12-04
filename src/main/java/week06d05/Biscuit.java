@@ -12,6 +12,12 @@ public class Biscuit {
     private int gramAmount;
 
     public Biscuit(BiscuitType biscuitType, int gramAmount) {
+        if (biscuitType == null) {
+            throw new IllegalArgumentException("Type missing!");
+        }
+        if (gramAmount < 0) {
+            throw new IllegalArgumentException("Gram amount can't negative");
+        }
         this.biscuitType = biscuitType;
         this.gramAmount = gramAmount;
     }
@@ -22,12 +28,5 @@ public class Biscuit {
 
     public String toString() {
         return biscuitType.toString()  +" " + gramAmount + "g";
-    }
-
-    public static void main(String[] args) {
-        Biscuit biscuit = Biscuit.of(BiscuitType.CRUMBLY, 200);
-        System.out.println(biscuit.toString());
-        Biscuit newBiscuit =Biscuit.of(BiscuitType.SALTY, 100);
-        System.out.println(newBiscuit.toString());
     }
 }
