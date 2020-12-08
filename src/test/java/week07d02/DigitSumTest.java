@@ -20,5 +20,9 @@ public class DigitSumTest {
         assertEquals(6, DigitSum.sumOfDigitsString(-123));
         assertEquals(0, DigitSum.sumOfDigitsString(0));
         assertEquals(10, DigitSum.sumOfDigitsString(1234));
+        assertEquals(6, DigitSum.sumOfDigitsArray(123));
+        assertEquals(6, DigitSum.sumOfDigitsArray(-123));
+        assertEquals(0, DigitSum.sumOfDigitsArray(0));
+        assertEquals(10, DigitSum.sumOfDigitsArray(1234));
     }
 }

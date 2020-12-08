@@ -4,9 +4,6 @@ pl.: 123 esetén a visszatérési érték 6.
  */
 package week07d02;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class DigitSum {
 
     public static int sumOfDigits(int x) {
@@ -31,6 +28,15 @@ public class DigitSum {
         int sum = 0;
         for (int i = 0; i < nr.length(); i++) {
             sum += nr.charAt(i) - '0';
+        }
+        return sum;
+    }
+
+    public static int sumOfDigitsArray(int x) {
+        String[] digits = String.valueOf(abs(x)).split("");
+        int sum = 0;
+        for (String  digit : digits) {
+            sum += Integer.parseInt(digit);
         }
         return sum;
     }
