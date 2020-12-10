@@ -24,13 +24,4 @@ public class NumberList {
         }
         return true;
     }
-
-    public static void main(String args[]) {
-        System.out.println(isIncreasing(Arrays.asList(1, 2, 3, 3, 5)));
-        System.out.println(isIncreasing(Arrays.asList(1, 2, 4, 3, 5)));
-        System.out.println(isIncreasing(Arrays.asList(1, 2)));
-        System.out.println(isIncreasing(Arrays.asList(1, -1)));
-        System.out.println(isIncreasing(Arrays.asList(1)));
-        System.out.println(isIncreasing(null));
-    }
 }
