@@ -56,5 +56,4 @@ public class OrderStateTest {
         assertFalse(state.canDelete());
     }
 
-
 }

@@ -1,6 +1,6 @@
 package enumabstract;
 
-public enum OrderState implements  Deleteable{
+public enum OrderState implements Deleteable{
 
     NEW {
         @Override
