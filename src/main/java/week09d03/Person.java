@@ -22,8 +22,10 @@ public class Person {
     }
 
     public void setPresent() {
-        int random = age > 14 ? new Random().nextInt(3) + 1 : new Random().nextInt(4);
-        this.present = Present.values()[random];
+        Random random = new Random();
+        int length = Present.values().length;
+        int index = age > 14 ? random.nextInt(length-1) + 1 : random.nextInt(length);
+        this.present = Present.values()[index];
     }
 
     @Override

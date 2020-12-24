@@ -21,7 +21,6 @@ public class SantaClausTest {
         assertThrows(IllegalArgumentException.class, () -> new SantaClaus(null));
         SantaClaus santaClaus = new SantaClaus(persons);
         santaClaus.getThroughChimneys();
-        System.out.println(santaClaus.getPersons());
-
+        System.out.println(santaClaus.getPeople());
     }
 }

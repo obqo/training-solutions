@@ -5,20 +5,20 @@ import java.util.List;
 
 public class SantaClaus {
 
-    private List<Person> persons = new ArrayList<>();
+    private List<Person> people = new ArrayList<>();
 
-    public SantaClaus(List<Person> persons) {
-        if (persons == null)
+    public SantaClaus(List<Person> people) {
+        if (people == null)
             throw new IllegalArgumentException("List is null");
-        this.persons = persons;
+        this.people = people;
     }
 
-    public List<Person> getPersons() {
-        return persons;
+    public List<Person> getPeople() {
+        return new ArrayList<>(people);
     }
 
     public void getThroughChimneys() {
-        for (Person person : persons) {
+        for (Person person : people) {
             person.setPresent();
         }
     }
