@@ -27,7 +27,7 @@ public class HeightStatisticsTest {
         List<Integer> heights = List.of(198, 201, 211, 195, 214, 208, 203, 198);
         statistics.saveHeights(heights, path);
 
-        byte[] original = this.getClass().getResourceAsStream("/statistics.dat").readAllBytes();
+        byte[] original = this.getClass().getResourceAsStream("statistics.dat").readAllBytes();
         byte[] saved = Files.readAllBytes(path);
 
         assertArrayEquals(original, saved);

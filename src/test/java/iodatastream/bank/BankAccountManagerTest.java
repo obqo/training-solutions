@@ -30,7 +30,7 @@ public class BankAccountManagerTest {
 
         Path targetPath = path.resolve("10092395-77541845-00000000.dat");
         byte[] savedAccount = Files.readAllBytes(targetPath);
-        byte[] originalAccount = this.getClass().getResourceAsStream("/10092395-77541845-00000000.dat").readAllBytes();
+        byte[] originalAccount = this.getClass().getResourceAsStream("10092395-77541845-00000000.dat").readAllBytes();
 
         assertArrayEquals(originalAccount, savedAccount);
 
