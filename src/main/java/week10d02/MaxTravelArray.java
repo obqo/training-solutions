@@ -18,7 +18,7 @@ public class MaxTravelArray {
     private int counter(int[] array) {
         int max = 0;
         int maxIndex = 0;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < 30; i++) {
             if (max < array[i]) {
                 max = array[i];
                 maxIndex = i;
@@ -26,10 +26,4 @@ public class MaxTravelArray {
         }
         return maxIndex;
     }
-
-    public static void main(String[] args) {
-        MaxTravelArray maxTravel = new MaxTravelArray();
-        System.out.println(maxTravel.getMAxIndex(List.of(12, 12,1,0,3,4,4)));
-    }
 }
-

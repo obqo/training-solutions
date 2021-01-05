@@ -20,6 +20,6 @@ class MaxTravelSortTest {
 
     @Test
     void getMAxIndex() {
-        assertEquals(4, new MaxTravelSort().getMAxIndex(List.of(12,1,0,3,4,4)));
+        assertEquals(4, new MaxTravelSort().getMAxIndex(List.of(12,12,0,3,4,4)));
     }
 }
