@@ -9,7 +9,7 @@ public class ArraySelector {
 
     public String selectEvens(int[] array) {
         if (array == null) {
-            throw new IllegalArgumentException("List is null");
+            throw new IllegalArgumentException("Array is null");
         }
         List<Integer> evenIndexList = new ArrayList<>();
         for (int i = 0; i < array.length; i = i + 2) {
