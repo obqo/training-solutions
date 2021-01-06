@@ -10,7 +10,7 @@ public class LottoReaderTest {
 
     @Test
     public void testCreate() {
-        InputStream inputStream = LottoReader.class.getResourceAsStream("/otos.csv");
+        InputStream inputStream = LottoReader.class.getResourceAsStream("otos.csv");
         LottoReader lottoReader = new LottoReader(inputStream);
         assertEquals(190, lottoReader.getNumber(1));
         assertEquals(148, lottoReader.getNumber(5));
