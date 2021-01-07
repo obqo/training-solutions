@@ -1,6 +1,6 @@
 package exam02;
 
-import a.A;
+//import a.A;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +21,9 @@ public class ArraySelector {
         return evenIndexList.toString();
     }
 
-    public static void main(String[] args) {
-        A a = new A();
-        int[] array = {123, 21, 11, 15};
-        System.out.println(a.evenArrayElements(array));
-    }
+//    public static void main(String[] args) {
+//        A a = new A();
+//        int[] array = {123, 21, 11, 15};
+//        System.out.println(a.evenArrayElements(array));
+//    }
 }
