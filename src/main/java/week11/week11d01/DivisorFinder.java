@@ -11,11 +11,23 @@ public class DivisorFinder {
         int divisorsCount = 0;
         int original = n;
         while (n != 0) {
-            int remainder = n % 10;
-            if (original % remainder == 0) {
+            int lastDigit = n % 10;
+            if (lastDigit != 0 && original % lastDigit == 0) {
                 divisorsCount++;
             }
             n /= 10;
+        }
+        return divisorsCount;
+    }
+
+    public int findDivisorsWithString(int n) {
+        int divisorsCount = 0;
+        String number = Integer.toString(Math.abs(n));
+        for (int i = 0; i < number.length(); i++) {
+            int digit = Integer.parseInt(String.valueOf(number.charAt(i)));
+            if (digit != 0 && n % digit == 0) {
+                divisorsCount++;
+            }
         }
         return divisorsCount;
     }
