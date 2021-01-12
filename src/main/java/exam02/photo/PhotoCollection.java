@@ -30,12 +30,15 @@ public class PhotoCollection {
     public int numberOfStars() {
         int sum = 0;
         for (Photo photo : photos) {
+            sum += photo.getQuality().getValue();
+/*
             if (photo.getQuality() == Quality.ONE_STAR) {
                 sum +=1;
             }
             if (photo.getQuality() == Quality.TWO_STAR) {
                 sum +=2;
             }
+ */
         }
         return sum;
     }
