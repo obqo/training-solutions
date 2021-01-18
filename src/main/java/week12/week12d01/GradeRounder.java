@@ -6,12 +6,6 @@ kerekíteni. Példa: a pontszám 84. 85 - 84 kevesebb mint 3, így felfelé kere
  */
 package week12.week12d01;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class GradeRounder {
 
     public int[] roundGrades(int[] grades) {
