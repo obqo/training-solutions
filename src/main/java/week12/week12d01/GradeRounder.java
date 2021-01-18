@@ -14,7 +14,7 @@ public class GradeRounder {
         }
         int[] result = new int[grades.length];
         for (int i = 0; i < grades.length; i++) {
-            result[i] = grades[i] % 5 < 3 ? grades[i] : (grades[i] / 5 + 1) * 5;
+            result[i] = (grades[i] < 40 || grades[i] % 5 < 3) ? grades[i] : (grades[i] / 5 + 1) * 5;
         }
         return result;
     }

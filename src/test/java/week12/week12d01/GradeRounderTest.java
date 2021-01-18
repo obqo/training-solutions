@@ -15,7 +15,7 @@ class GradeRounderTest {
     @Test
     void roundGrades() {
         int[] grades = new int[]{1, 3, 4, 5, 6, 7, 10, 84};
-        String result = "[1, 5, 5, 5, 6, 7, 10, 85]";
+        String result = "[1, 3, 4, 5, 6, 7, 10, 85]";
         assertEquals(result, Arrays.stream(gradeRounder.roundGrades(grades)).boxed().collect(Collectors.toList()).toString());
     }
 
