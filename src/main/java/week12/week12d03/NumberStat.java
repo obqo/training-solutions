@@ -28,7 +28,7 @@ public class NumberStat {
     public void readFile() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(NumberStat.class.getResourceAsStream("numbers.txt")))) {
             String line;
-            while ((line= reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 String[] temp = line.split(",");
                 for (String item : temp) {
                     numbers.add(Integer.parseInt(item));
@@ -39,7 +39,7 @@ public class NumberStat {
         }
     }
 
-    public int minSingleItem() {
+    public int minSingleItem() { //findSmallestUnique
         if (numbers.isEmpty()) {
             throw new IllegalStateException("No numbers!");
         }
