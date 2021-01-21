@@ -7,6 +7,7 @@ Majd egymás után írd ki ezeket a konzolra! Ne használj közöttük sortöré
  */
 package week12.week12d04;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -19,10 +20,18 @@ public class Secret {
     public String decodingAllData(String fileName) {
         StringBuilder sb = new StringBuilder();
         Path file = Path.of("src/main/resources/week12/week12d04/" + fileName);
+        Path result = Path.of("src/main/resources/week12/week12d04/decoding.txt");
         try (InputStream inputStream = Files.newInputStream(file)) {
+            try (BufferedWriter writer = Files.newBufferedWriter(result)) {
                 for (byte b : inputStream.readAllBytes()) {
-                    sb.append((char)(b + KEY));
+                    sb.append((char) (b + KEY));
+
+                    writer.write((char) (b + KEY));
+
                 }
+            } catch (IOException e) {
+                throw new IllegalStateException("Can not write file!", e);
+            }
         } catch (IOException ioe) {
             throw new IllegalStateException("Can not read file", ioe);
         }
@@ -36,7 +45,7 @@ public class Secret {
             byte[] buffer = new byte[1000];
             while (inputStream.read(buffer) > 0) {
                 for (byte b : buffer) {
-                    sb.append((char)(b + KEY));
+                    sb.append((char) (b + KEY));
                 }
             }
         } catch (IOException ioe) {
@@ -44,6 +53,7 @@ public class Secret {
         }
         return sb.substring(0, sb.indexOf("\n\n"));
     }
+
     public static void main(String[] args) {
         Secret secret = new Secret();
         System.out.println(secret.decodingAllData("secret.dat"));
