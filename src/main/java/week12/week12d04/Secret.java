@@ -42,7 +42,7 @@ public class Secret {
         } catch (IOException ioe) {
             throw new IllegalStateException("Can not read file", ioe);
         }
-        return sb.substring(0, sb.indexOf("\n\n")).toString();
+        return sb.substring(0, sb.indexOf("\n\n"));
     }
     public static void main(String[] args) {
         Secret secret = new Secret();
