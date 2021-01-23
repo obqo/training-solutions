@@ -10,6 +10,7 @@ package week12.week12d04;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -17,20 +18,29 @@ public class Secret {
 
     private final static int KEY = 10;
 
-    public String decodingAllData(String fileName) {
+    public String decodingAllData(Path source, Path destination) {
         StringBuilder sb = new StringBuilder();
-        Path file = Path.of("src/main/resources/week12/week12d04/" + fileName);
-        Path result = Path.of("src/main/resources/week12/week12d04/decoding.txt");
-        try (InputStream inputStream = Files.newInputStream(file)) {
-            try (BufferedWriter writer = Files.newBufferedWriter(result)) {
-                for (byte b : inputStream.readAllBytes()) {
-                    sb.append((char) (b + KEY));
+        try (InputStream inputStream = Files.newInputStream(source);
+             Writer writer = Files.newBufferedWriter(destination)) {
+            for (byte b : inputStream.readAllBytes()) {
+                sb.append((char) (b + KEY));
+                writer.write((char) (b + KEY));
+            }
+        } catch (IOException e) {
+            throw new IllegalStateException("Can not write file!", e);
+        }
+        return sb.toString();
+    }
 
-                    writer.write((char) (b + KEY));
-
+    public String decodingWithBuffer(Path source) {
+        StringBuilder sb = new StringBuilder();
+        try (InputStream inputStream = Files.newInputStream(source)) {
+            byte[] buffer = new byte[1000];
+            int size;
+            while ((size = inputStream.read(buffer)) > 0) {
+                for (int i = 0; i < size; i++) {
+                    sb.append((char) (buffer[i] + KEY));
                 }
-            } catch (IOException e) {
-                throw new IllegalStateException("Can not write file!", e);
             }
         } catch (IOException ioe) {
             throw new IllegalStateException("Can not read file", ioe);
@@ -38,25 +48,10 @@ public class Secret {
         return sb.toString();
     }
 
-    public String decodingWithBuffer(String fileName) {
-        StringBuilder sb = new StringBuilder();
-        Path file = Path.of("src/main/resources/week12/week12d04/" + fileName);
-        try (InputStream inputStream = Files.newInputStream(file)) {
-            byte[] buffer = new byte[1000];
-            while (inputStream.read(buffer) > 0) {
-                for (byte b : buffer) {
-                    sb.append((char) (b + KEY));
-                }
-            }
-        } catch (IOException ioe) {
-            throw new IllegalStateException("Can not read file", ioe);
-        }
-        return sb.substring(0, sb.indexOf("\n\n"));
-    }
-
     public static void main(String[] args) {
-        Secret secret = new Secret();
-        System.out.println(secret.decodingAllData("secret.dat"));
-        System.out.println(secret.decodingWithBuffer("secret.dat"));
+        Path source = Path.of("src/main/resources/week12/week12d04/secret.dat");
+        Path destination = Path.of("src/main/resources/week12/week12d04/decoding.txt");
+        System.out.println(new Secret().decodingAllData(source, destination));
+        System.out.println(new Secret().decodingWithBuffer(source));
     }
 }
