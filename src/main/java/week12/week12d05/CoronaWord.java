@@ -18,13 +18,12 @@ public class CoronaWord {
         try (BufferedReader reader = new BufferedReader(is)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                line = line.toLowerCase();
-                if (line.contains(SEARCHED_WORD)) {
+                if (line.toLowerCase().contains(SEARCHED_WORD)) {
                     count++;
                 }
             }
         } catch (IOException ioe) {
-            throw new IllegalArgumentException("Can not read file");
+            throw new IllegalStateException("Can not read file");
         }
         return count;
     }
