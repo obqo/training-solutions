@@ -34,6 +34,6 @@ public class Fly {
 
     @Override
     public String toString() {
-        return regNumber + " " + type + city + time;
+        return regNumber + " " + type + " " + city + " " + time;
     }
 }
