@@ -65,7 +65,7 @@ public class Quiz {
         if (indexCompetitor(name) == -1) {
             throw new IllegalStateException("Can not find competitor!");
         }
-        return getAnswer(name, question).equals(getCorrectAnswer(name, question));
+        return getAnswer(name, question).equals(getCorrectAnswer(question));
     }
 
     public String mostSkippedAnswer() {
@@ -102,7 +102,7 @@ public class Quiz {
         return competitors.get(indexCompetitor(name)).getAnswers().get(question - 1);
     }
 
-    private String getCorrectAnswer(String name, int question) {
+    private String getCorrectAnswer(int question) {
         return Character.toString(correct.charAt(question -1));
     }
 
