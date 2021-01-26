@@ -17,8 +17,8 @@ public class SettlementMaxLen {
             String line = reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] temp = line.split(";");
-                if (result.length() < temp[1].length()) {
-                    result = temp[1];
+                if (result.length() < temp[1].trim().length()) {
+                    result = temp[1].trim();
                 }
             }
         } catch (IOException ioe) {
