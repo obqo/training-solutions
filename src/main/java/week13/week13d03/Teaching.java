@@ -47,10 +47,8 @@ public class Teaching {
         if (line.equals(teacher)) {
             skippedLines(reader, NUMBER_OF_SKIP_LINE);
             return Integer.parseInt(reader.readLine());
-        } else {
-            skippedLines(reader, NUMBER_OF_SKIP_LINE + 1);
-            return 0;
         }
+        return 0;
     }
 
     private void skippedLines(BufferedReader reader, int numberOfLine) throws IOException {
