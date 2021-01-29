@@ -56,7 +56,7 @@ public class TemplateEngine {
                 "osszeg", 543.21,
                 "hatarido", LocalDate.of(2021, 2, 2));
         StringWriter sw = new StringWriter();
-        try (BufferedWriter writer = new BufferedWriter(sw);) {
+        try (BufferedWriter writer = new BufferedWriter(sw)) {
             te.merge(reader, values, writer);
         } catch (IOException ioe) {
             throw new IllegalStateException("Somthing wrong!", ioe);
