@@ -21,15 +21,19 @@ public class TemplateMerger {
 
     public String merge(Path file, List<Employee> employees) {
         StringBuilder sb = new StringBuilder();
+        String line = loadSablon(file);
+        for (Employee employee : employees) {
+            sb.append(replaceData(line, employee));
+        }
+        return sb.toString();
+    }
+
+    private String loadSablon(Path file) {
         try (BufferedReader reader = Files.newBufferedReader(file)) {
-            String line = reader.readLine();
-            for (Employee employee : employees) {
-                sb.append(replaceData(line, employee));
-            }
+            return reader.readLine();
         } catch (IOException ioe) {
             throw new IllegalStateException("Can not read file", ioe);
         }
-        return sb.toString();
     }
 
     private String replaceData(String line, Employee employee) {
