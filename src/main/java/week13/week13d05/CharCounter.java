@@ -6,10 +6,8 @@ angol ábécé betűit!
  */
 package week13.week13d05;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class CharCounter {
 
