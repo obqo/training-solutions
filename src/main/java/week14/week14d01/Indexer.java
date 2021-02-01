@@ -18,12 +18,10 @@ public class Indexer {
         for (String name : names) {
             isValidName(name);
             char initial = name.charAt(0);
-            List<String> list = new ArrayList<>();
-            if (mapOfIndex.containsKey(initial)) {
-                list = mapOfIndex.get(initial);
+            if (!mapOfIndex.containsKey(initial)) {
+                mapOfIndex.put(initial, new ArrayList<>());
             }
-            list.add(name);
-            mapOfIndex.put(initial, list);
+            mapOfIndex.get(initial).add(name);
         }
         return mapOfIndex;
     }
