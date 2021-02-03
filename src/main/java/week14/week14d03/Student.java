@@ -5,10 +5,15 @@ import java.util.*;
 public class Student {
 
     private final String name;
-    private final Map<String, List<Integer>> subjectEvalMap = new TreeMap<>();
+    private Map<String, List<Integer>> subjectEvalMap = new TreeMap<>();
 
     public Student(String name) {
         this.name = name;
+    }
+
+    public Student(Student s) {
+        name = s.name;
+        subjectEvalMap = new TreeMap<>(s.subjectEvalMap);
     }
 
     public void addSubjectEval(String subject, int evaluation) {
@@ -20,6 +25,10 @@ public class Student {
 
     public String getName() {
         return name;
+    }
+
+    public Map<String, List<Integer>> getSubjectEvalMap() {
+        return subjectEvalMap;
     }
 
     @Override

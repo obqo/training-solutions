@@ -36,9 +36,18 @@ class ClassNotebookTest {
         student3.addSubjectEval("info", 5);
         student3.addSubjectEval("info", 5);
         ClassNotebook classNotebook = new ClassNotebook(new ArrayList<>(List.of(student1, student2, student3)));
+        List<Student> result = classNotebook.sortNoteBook();
         assertEquals("Nagy Anna", classNotebook.getStudents().get(0).getName());
         assertEquals("Lang Péter", classNotebook.getStudents().get(2).getName());
-        assertEquals("Kiss Béla", classNotebook.sortNoteBook().get(0).getName());
-        assertEquals("Nagy Anna", classNotebook.sortNoteBook().get(2).getName());
+        assertEquals("Kiss Béla", result.get(0).getName());
+        assertEquals("Nagy Anna", result.get(2).getName());
+
+        result.add(new Student("Jack"));
+        assertEquals(3, classNotebook.getStudents().size());
+
+        result.get(0).addSubjectEval("biológia", 1);
+        assertEquals(3, classNotebook.getStudents().size());
+        System.out.println(result.get(0));
+        assertEquals(3, classNotebook.getStudents().get(1).getSubjectEvalMap().size());
      }
 }

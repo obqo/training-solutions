@@ -26,13 +26,19 @@ public class ClassNotebook {
     }
 
     public List<Student> sortNoteBook() {
-        List<Student> sorted = new ArrayList<>(students);
+        List<Student> sorted = new ArrayList<>();
+        for (Student s : students) {
+            sorted.add(new Student(s));
+        }
+        /*
         Collections.sort(sorted, new Comparator<>() {
             @Override
             public int compare(Student o1, Student o2) {
                 return o1.getName().compareTo(o2.getName());
             }
         });
+         */
+        sorted.sort(Comparator.comparing(Student::getName));
         return sorted;
     }
 }
