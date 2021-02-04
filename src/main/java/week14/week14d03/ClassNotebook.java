@@ -38,6 +38,7 @@ public class ClassNotebook {
             }
         });
          */
+        //sorted.sort(((o1, o2) -> o1.getName().compareTo(o2.getName())));
         sorted.sort(Comparator.comparing(Student::getName));
         return sorted;
     }

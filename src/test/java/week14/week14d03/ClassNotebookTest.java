@@ -47,7 +47,7 @@ class ClassNotebookTest {
 
         result.get(0).addSubjectEval("biológia", 1);
         assertEquals(3, classNotebook.getStudents().size());
-        System.out.println(result.get(0));
+        //System.out.println(result.get(0));
         assertEquals(3, classNotebook.getStudents().get(1).getSubjectEvalMap().size());
      }
 }
