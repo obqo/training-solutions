@@ -14,6 +14,6 @@ class FileCounterTest {
         FileCounter fc = new FileCounter();
         String fileName = "src/main/java/week14/week14d05/hachiko.srt";
         Map<String, Integer> countMap = new HashMap<>(fc.countWords(fileName, "Hachiko", "haza", "pályaudvar", "jó"));
-        assertEquals("{haza=15, jó=15, pályaudvar=5, Hachiko=4}", countMap.toString());
+        assertEquals("{haza=16, jó=38, pályaudvar=6, Hachiko=4}", countMap.toString());
     }
 }

@@ -20,7 +20,7 @@ public class FileCounter {
             String line;
             while ((line = reader.readLine()) != null) {
                 for (String str : words) {
-                    if (line.contains(str)) {
+                    if (line.toLowerCase().contains(str.toLowerCase())) {
                         if (!mapOfWords.containsKey(str)) {
                             mapOfWords.put(str, 0);
                         }
