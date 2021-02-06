@@ -11,7 +11,7 @@ bestPriceForShortestPeriod(): a legrövidebb időszakra vonatkozó legolcsóbb C
 Ha van ingyenes, akkor azok közül bármelyik megadható.
 worstOffers(): a természetes rendezettség szerinti 3 legrosszabb ajánlat.
  */
-package lambdacomparator.cloud;
+package lambdacomparator;
 
 import java.util.ArrayList;
 import java.util.Collections;

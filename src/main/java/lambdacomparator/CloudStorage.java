@@ -1,4 +1,4 @@
-package lambdacomparator.cloud;
+package lambdacomparator;
 
 public class CloudStorage implements Comparable<CloudStorage>{
 

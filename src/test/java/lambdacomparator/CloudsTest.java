@@ -1,6 +1,9 @@
-package lambdacomparator.cloud;
+package lambdacomparator;
 
 
+import lambdacomparator.CloudStorage;
+import lambdacomparator.Clouds;
+import lambdacomparator.PayPeriod;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
