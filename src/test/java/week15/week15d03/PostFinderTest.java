@@ -23,5 +23,8 @@ class PostFinderTest {
         //System.out.println(postFinder.findPostsFor("owner1"));
         assertEquals(1, postFinder.findPostsFor("owner1").size());
         assertEquals("title0", postFinder.findPostsFor("owner1").get(0).getTitle());
+        PostFinder postFinder2 = new PostFinder(List.of(
+                new Post("title0", LocalDate.of(2020, 12, 12), "content1", null)));
+        assertThrows(IllegalArgumentException.class, () -> postFinder2.findPostsFor("owner"));
     }
 }

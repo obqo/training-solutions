@@ -38,6 +38,9 @@ public class PostFinder {
     }
 
     private boolean isValid(Post post, String user) {
+        if (post.getOwner() == null) {
+            throw new IllegalArgumentException("Invalid owner!");
+        }
         return post.getOwner().equals(user) &&
                 post.getPublishedAt().isBefore(LocalDate.now()) &&
                 isNotEmpty(post.getContent()) &&
