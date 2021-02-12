@@ -45,12 +45,21 @@ public class Battles {
 
     private void putMap(String house) {
         if (!dataMap.containsKey(house)) {
-            dataMap.put(house, 1);
+            dataMap.put(house, 0);
         }
         dataMap.put(house, dataMap.get(house) + 1);
     }
 
     public String sortedData() {
+        TreeSet<Battle> sortedList = new TreeSet<>(Comparator.comparingDouble(Battle::getNr).reversed());
+        for (String key : dataMap.keySet()) {
+            sortedList.add(new Battle(key, dataMap.get(key)));
+        }
+        return sortedList.iterator().next().getHouse();
+    }
+
+    /*
+        public String sortedData() {
         List<Battle> sortedList = new ArrayList<>();
         for (String key : dataMap.keySet()) {
             sortedList.add(new Battle(key, dataMap.get(key)));
@@ -58,6 +67,7 @@ public class Battles {
         sortedList.sort(Comparator.comparingDouble(Battle::getNr).reversed());
         return sortedList.get(0).getHouse();
     }
+     */
 
     public Map<String, Integer> getDataMap() {
         return new HashMap<>(dataMap);
