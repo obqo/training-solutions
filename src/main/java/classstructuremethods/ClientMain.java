@@ -1,4 +1,6 @@
-package classsctructuremethods;
+package classstructuremethods;
+
+import classstructuremethods.Client;
 
 public class ClientMain {
 
