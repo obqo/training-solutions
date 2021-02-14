@@ -1,8 +1,8 @@
-package week02;
+package meetingrooms;
 
 public class Product {
-    private String name;
-    private String code;
+    private final String name;
+    private final String code;
 
     public Product(String name, String code) {
         this.name = name;

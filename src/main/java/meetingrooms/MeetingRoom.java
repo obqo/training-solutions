@@ -1,4 +1,4 @@
-package week02;
+package meetingrooms;
 
 public class MeetingRoom {
 
@@ -30,10 +30,6 @@ public class MeetingRoom {
 
     public int getWidth() {
         return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     public int getArea() {

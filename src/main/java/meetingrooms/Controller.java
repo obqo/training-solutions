@@ -1,6 +1,5 @@
-package week02;
+package meetingrooms;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Controller {

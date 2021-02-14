@@ -1,12 +1,11 @@
-package week02;
+package meetingrooms;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Office {
 
-    private List<MeetingRoom> meetingRooms = new ArrayList<>();
+    private final List<MeetingRoom> meetingRooms = new ArrayList<>();
 
     public void addMeetingRoom(MeetingRoom meetingRoom) {
         meetingRooms.add(meetingRoom);
@@ -47,7 +46,7 @@ public class Office {
     public void printMeetingRoomsContains(String part) {
         System.out.println("A keresett tárgyalók adatai: ");
         for (MeetingRoom meetingRoom : meetingRooms) {
-            if (meetingRoom.getName().toLowerCase().indexOf(part.toLowerCase()) > -1) {
+            if (meetingRoom.getName().toLowerCase().contains(part.toLowerCase())) {
                 System.out.println(" hossza: " + meetingRoom.getLength() + " szélessége: " + meetingRoom.getWidth() + " területe: " + meetingRoom.getArea());
             }
         }
