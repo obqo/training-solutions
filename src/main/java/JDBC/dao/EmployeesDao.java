@@ -51,8 +51,7 @@ public class EmployeesDao {
     private String selectNameByPreparedStatment(PreparedStatement ps) {
         try (ResultSet rs = ps.executeQuery()) {
             if (rs.next()) {
-                String name = rs.getString("emp_name");
-                return name;
+                return rs.getString("emp_name");
             }
             else throw new IllegalArgumentException("Not found");
         } catch (SQLException se) {
