@@ -21,8 +21,7 @@ public class EmployeesDaoTest {
         dataSource.setUser("employees");
         dataSource.setPassword("employees");
 
-        Flyway flyway = new Flyway();
-        flyway.setDataSource(dataSource);
+        Flyway flyway = Flyway.configure().dataSource(dataSource).load();
 
         flyway.clean();
         flyway.migrate();
@@ -34,5 +33,13 @@ public class EmployeesDaoTest {
     public void testInsert() {
         employeesDao.createEmployee("John Doe");
         assertEquals(Arrays.asList("John Doe"), employeesDao.listEmployeeName());
+    }
+
+    @Test
+    public void testById() {
+        long id = employeesDao.createEmployee("Jack Doe");
+        id = employeesDao.createEmployee("Jane Doe");
+        String name = employeesDao.findEmployeeNameById(id);
+        assertEquals("Jane Doe", name);
     }
 }
