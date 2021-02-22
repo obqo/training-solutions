@@ -21,4 +21,3 @@ class CdvCheckTest {
                 () -> new CdvCheck().check("12345a7890"));
     }
 }
-© 2021 GitHub, Inc.
