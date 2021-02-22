@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class OwlCounter {
 
-    private Map<String, Integer> numberOfOwls = new HashMap<>();
+    private final Map<String, Integer> numberOfOwls = new HashMap<>();
 
     public void readFromFile(BufferedReader reader) throws IOException {
         String line;
