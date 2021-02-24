@@ -2,6 +2,8 @@ package activitytracker;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +15,36 @@ public class ActivityDao {
         this.dataSource = dataSource;
     }
 
-    public void insertActivity(Activity activity) {
+    public Activity insertActivity(Activity activity) {
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("insert into activities(start_time, activity_desc, activity_type) values (?, ?, ?)")) {
+             PreparedStatement stmt = conn.prepareStatement("insert into activities(start_time, activity_desc, activity_type) values (?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             stmt.setTimestamp(1, Timestamp.valueOf(activity.getStartTime()));
             stmt.setString(2, activity.getDesc());
             stmt.setString(3, activity.getType().toString());
             stmt.executeUpdate();
+            return getIdAfterExecuted(activity, stmt);
+        } catch (SQLException se) {
+            throw new IllegalStateException("Connection failed!", se);
+        }
+    }
+
+    private Activity getIdAfterExecuted(Activity activity, PreparedStatement stmt) throws SQLException {
+        try (ResultSet rs = stmt.getGeneratedKeys()) {
+            if (rs.next()) {
+                long id = rs.getLong(1);
+                return new Activity(id, activity.getStartTime(), activity.getDesc(), activity.getType());
+            }
+        }
+        throw new IllegalStateException("Cannot get keys!");
+    }
+
+    public List<Activity> selectActivitiesBeforeDate(LocalDate date) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("select * from activities where start_time < ?")) {
+            //LocalDateTime actualDate = date.atTime(0, 0);
+            //stmt.setTimestamp(1, Timestamp.valueOf(actualDate));
+            stmt.setString(1, date.toString());
+            return selectActivityByPreparedStatment(stmt);
         } catch (SQLException se) {
             throw new IllegalStateException("Connection failed!", se);
         }

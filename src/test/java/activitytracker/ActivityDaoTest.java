@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,6 +44,18 @@ class ActivityDaoTest {
         Activity activity = new Activity(LocalDateTime.of(2021, 02, 23, 10, 22), "Biking in Bakony", ActivityType.BIKING);
         activityDao.insertActivity(activity);
         assertEquals(4, activityDao.selectAllActivities().size());
+    }
+
+    @Test
+    public void selectBeforeDate() {
+        System.out.println(activityDao.selectActivitiesBeforeDate(LocalDate.of(2020, 2, 1)));
+    }
+
+    @Test
+    public void findById() {
+        Activity activity = new Activity(LocalDateTime.of(2021, 02, 23, 10, 22), "Biking in Bakony", ActivityType.BIKING);
+        Activity result = activityDao.insertActivity(activity);
+        assertEquals("Biking in Bakony", activityDao.selectActivityById(result.getId()).getDesc());
     }
 
 }
