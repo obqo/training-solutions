@@ -32,7 +32,6 @@ package exam03retake02;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.Collator;
 import java.util.*;
 
@@ -44,19 +43,19 @@ public class BalatonStorm {
         while ((line = reader.readLine()) != null) {
             if (line.contains("allomas")) {
                 String allomas = line.split(": \"")[1].replace("\",", "");
-                line = skipLine(reader, 4);
+                line = skipLine(reader);
                 if (line.split(": ")[1].equals("3,")) {
                     result.add(allomas);
                 }
             }
         }
-        Collections.sort(result, Collator.getInstance(new Locale("hu", "HU")));
+        result.sort(Collator.getInstance(new Locale("hu", "HU")));
         return result;
     }
 
-    private String skipLine(BufferedReader reader, int nr) throws IOException {
+    private String skipLine(BufferedReader reader) throws IOException {
         String line = null;
-        for (int i = 0; i < nr; i++) {
+        for (int i = 0; i < 4; i++) {
             line = reader.readLine();
         }
         return line;
