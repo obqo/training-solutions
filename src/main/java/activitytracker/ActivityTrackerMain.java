@@ -4,7 +4,6 @@ import org.flywaydb.core.Flyway;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 
 public class ActivityTrackerMain {
 
@@ -29,7 +28,7 @@ public class ActivityTrackerMain {
         flyway.migrate();
 
         ActivityDao activityDao = new ActivityDao(dataSource);
-        System.out.println(activityDao.selectActivityById(3));
+        System.out.println(activityDao.selectById(3));
         System.out.println(activityDao.selectAllActivities());
         System.out.println(activityDao.selectAllActivitiesByType(ActivityType.BIKING));
     }

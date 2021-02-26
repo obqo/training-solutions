@@ -3,7 +3,6 @@ package activitytracker;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +21,39 @@ public class ActivityDao {
             stmt.setString(2, activity.getDesc());
             stmt.setString(3, activity.getType().toString());
             stmt.executeUpdate();
+            Activity result = getIdAfterExecuted(activity, stmt);
+            insertActivityTrackPoints(activity.getTrackPoints(), result.getId());
             return getIdAfterExecuted(activity, stmt);
         } catch (SQLException se) {
             throw new IllegalStateException("Connection failed!", se);
         }
+    }
+
+    private void insertActivityTrackPoints(List<TrackPoint> trackPoints, long activityId) {
+        try (Connection conn = dataSource.getConnection()) {
+            conn.setAutoCommit(false);
+            try (PreparedStatement stmt = conn.prepareStatement("insert into track_points(act_time, lat, lon, activityId) values (?, ?, ?, ?)")) {
+                for (TrackPoint trackPoint : trackPoints) {
+                    if (!issValidLatLon(trackPoint.getLat(), trackPoint.getLon())) {
+                        throw new IllegalArgumentException("Invalid lat or lon");
+                    }
+                    stmt.setDate(1, Date.valueOf(trackPoint.getTime()));
+                    stmt.setDouble(2, trackPoint.getLat());
+                    stmt.setDouble(3, trackPoint.getLon());
+                    stmt.setLong(4, activityId);
+                    stmt.executeUpdate();
+                }
+                conn.commit();
+            } catch (IllegalArgumentException iae) {
+                conn.rollback();
+            }
+        } catch (SQLException se) {
+            throw new IllegalStateException("Connection failed!", se);
+        }
+    }
+
+    private boolean issValidLatLon(double lat, double lon) {
+        return (lat >= -90) && (lat <= 90) && (lon >= -180) && (lon <= 180);
     }
 
     private Activity getIdAfterExecuted(Activity activity, PreparedStatement stmt) throws SQLException {
@@ -67,12 +95,33 @@ public class ActivityDao {
         }
     }
 
-    public Activity selectActivityById(long id) {
+    private List<TrackPoint> selectTrackPointByPreparedStatment(PreparedStatement stmt) {
+        List<TrackPoint> result = new ArrayList<>();
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                TrackPoint trackPoint = new TrackPoint(
+                        rs.getLong("id"),
+                        rs.getDate("act_time").toLocalDate(),
+                        rs.getDouble("lat"),
+                        rs.getDouble("lon"));
+                result.add(trackPoint);
+            }
+            return result;
+        } catch (SQLException se) {
+            throw new IllegalStateException("Cannot execute!", se);
+        }
+    }
+
+    public Activity selectById(long id) {
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("select * from activities where id = ?")) {
+             PreparedStatement stmt = conn.prepareStatement("select * from activities where id = ?");
+             PreparedStatement stmt2 = conn.prepareStatement("select * from track_points where activityId = ?")) {
             stmt.setLong(1, id);
             List<Activity> result = selectActivityByPreparedStatment(stmt);
             if (result.size() == 1) {
+                stmt2.setLong(1, id);
+                List<TrackPoint> resultPoints = selectTrackPointByPreparedStatment(stmt2);
+                result.get(0).addTrackPoints(resultPoints);
                 return result.get(0);
             }
             throw new IllegalArgumentException("Wrong id!");
