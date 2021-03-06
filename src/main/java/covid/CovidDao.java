@@ -124,12 +124,17 @@ public class CovidDao {
     }
 
     private String selectCityNameByPS(PreparedStatement ps) {
+        StringBuilder sb = new StringBuilder();
         try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getString("city");
-            } else {
-                return "Not found!";
-                //throw new IllegalArgumentException("Not found");
+            while (rs.next()) {
+                sb.append(rs.getString("city")).append(" ");
+            }
+            //throw new IllegalArgumentException("Not found");
+            if (sb.toString().isEmpty()) {
+                return "Nincs ilyen irányítószámú település!";
+            }
+            else {
+                return sb.toString();
             }
         } catch (SQLException se) {
             throw new IllegalStateException("Cannot query", se);
@@ -201,7 +206,7 @@ public class CovidDao {
     private List<Person> selectPeopleForVaccinationByPS(PreparedStatement ps, LocalDate dateOfVaccination) {
         List<Person> result = new ArrayList<>();
         try (ResultSet rs = ps.executeQuery()) {
-            LocalDateTime receivedDateTime = LocalDateTime.of(2021, 3, 1, 8, 0);
+            LocalDateTime receivedDateTime = LocalDate.now().atStartOfDay().plusDays(1).plusHours(8);
             getSelectedPeopleForVaccination(dateOfVaccination, result, rs, receivedDateTime);
         } catch (SQLException se) {
             throw new IllegalStateException("Cannot query", se);
@@ -298,16 +303,16 @@ public class CovidDao {
 
     private LocalDateTime getDateTimeFromConsole() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Oltás dátuma (eeee-hh-nn):");
+        System.out.print("Oltás dátuma (eeee-hh-nn): ");
         String date = scanner.nextLine();
-        System.out.println("Oltás időpontja (óó:pp):");
+        System.out.print("Oltás időpontja (óó:pp): ");
         String time = scanner.nextLine();
         return LocalDate.parse(date).atTime(LocalTime.parse(time));
     }
 
     private String getTypeOfVaccinationFromConsole() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Oltás típusa:");
+        System.out.print("Oltás típusa: ");
         return scanner.nextLine();
     }
 
@@ -404,7 +409,7 @@ public class CovidDao {
 
     private String getNoteFromConsole() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Az oltás meghiúsulásának oka:");
+        System.out.print("Az oltás meghiúsulásának oka: ");
         return scanner.nextLine();
     }
 

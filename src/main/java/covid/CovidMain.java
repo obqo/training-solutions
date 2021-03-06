@@ -25,7 +25,7 @@ public class CovidMain {
 
     private String printMenu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(
+        System.out.print(
                 "1. Regisztráció\n" +
                         "2. Tömeges regisztráció\n" +
                         "3. Generálás\n" +
@@ -34,7 +34,7 @@ public class CovidMain {
                         "6. Riport\n" +
                         "_____________\n" +
                         "x Vége\n\n" +
-                        "Választásod:");
+                        "Választásod: ");
         return scanner.nextLine();
     }
 
@@ -45,59 +45,67 @@ public class CovidMain {
         String name = getRegisteredName(scanner);
         String zip = getRegisteredZip(scanner, covidDao);
         int age = getRegisteredAge(scanner);
-        String email = getRegisteredEmail(scanner);
+        String email;
+        String email2;
+        do {
+            email = getRegisteredEmail(scanner, "először");
+            email2 = getRegisteredEmail(scanner, "másodjára");
+            if (!email.equals(email2)) {
+                System.out.println("Eltérő email címek, kérem újból!");
+            }
+        } while (!email.equals(email2));
         String ssn = getRegisteredSsn(scanner);
         return new Person(name, zip, age, email, ssn);
     }
 
     private String getRegisteredSsn(Scanner scanner) {
-        System.out.println("A személy TAJ száma:");
+        System.out.print("A személy TAJ száma: ");
         String ssn;
         while (isNotValidSsn(ssn = scanner.nextLine())) {
             System.out.println("Hibás TAJ szám!");
-            System.out.println("A személy TAJ száma:");
+            System.out.print("A személy TAJ száma: ");
         }
         return ssn;
     }
 
-    private String getRegisteredEmail(Scanner scanner) {
-        System.out.println("A személy email címe:");
+    private String getRegisteredEmail(Scanner scanner, String nr) {
+        System.out.print("A személy email címe (" + nr + "): ");
         String email;
         while (isNotValidEmail(email = scanner.nextLine())) {
             System.out.println("Hibás email cím!");
-            System.out.println("A személy email címe:");
+            System.out.print("A személy email címe (" + nr + "): ");
         }
         return email;
     }
 
     private int getRegisteredAge(Scanner scanner) {
-        System.out.println("A személy életkora:");
+        System.out.print("A személy életkora: ");
         int age;
         while (isNotValidAge(age = scanner.nextInt())) {
             System.out.println("Az életkor > 10 és < 150!");
-            System.out.println("A személy életkora:");
+            System.out.print("A személy életkora: ");
         }
         scanner.nextLine();
         return age;
     }
 
     private String getRegisteredZip(Scanner scanner, CovidDao covidDao) {
-        System.out.println("A település irányítószáma:");
+        System.out.print("A település irányítószáma: ");
         String zip;
         while (isNotValidNameZip(zip = scanner.nextLine())) {
             System.out.println("Az irányítószám nem lehet üres!");
-            System.out.println("A település irányítószáma:");
+            System.out.print("A település irányítószáma: ");
         }
-        System.out.println("Az irányítószámhoz tartozó település: " + covidDao.getCityByZip(zip));
+        System.out.println("Az irányítószámhoz tartozó település(ek): " + covidDao.getCityByZip(zip));
         return zip;
     }
 
     private String getRegisteredName(Scanner scanner) {
-        System.out.println("A személy neve:");
+        System.out.print("A személy neve: ");
         String name;
         while (isNotValidNameZip(name = scanner.nextLine())) {
             System.out.println("A név nem lehet üres!");
-            System.out.println("A személy neve:");
+            System.out.print("A személy neve: ");
         }
         return name;
     }
@@ -105,7 +113,7 @@ public class CovidMain {
     //2. Tömeges regisztráció
     private void insertRegisteredPeopleFromFile(CovidDao covidDao) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Kérem a tömeges regisztrációhoz a fájl elérési útvonalát (pl. src/main/java/covid/registered_persons.csv) :");
+        System.out.print("Kérem a tömeges regisztrációhoz a fájl elérési útvonalát (pl. src/main/java/covid/registered_persons.csv): ");
         String filename = scanner.nextLine();
         covidDao.insertRegisteredCitizens(covidDao.getRegisteredPersonsFromFile(filename));
     }
